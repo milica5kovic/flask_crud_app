@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update {{takmicar[1]}}</title>
+</head>
+<body>
+    <p>{{greska}}</p>
+    
+    <form action="/update/{{takmicar[1]}}" method="POST">
+        <p>
+            <label for="email">Email</label>
+            <input type="email" name="email" value="{{takmicar[1]}}" readonly>
+        </p>
+
+        <p>
+            <label for="sifra">Sifra</label>
+            <input type="password" name="sifra">
+        </p>
+
+       
+
+        <p>
+            <label for="ime_prezime">Ime i prezime</label>
+            <input type="text" name="ime_prezime" value="{{takmicar[2]}}">
+        </p>
+
+        <p>
+            <label for="godina_rodjenja">Godina rodjenja</label>
+            <input type="number" name="godina_rodjenja" value="{{takmicar[3]}}">
+        </p>
+
+        <p>
+            <label for="pol">Pol</label>
+            
+            <input type="radio" name="pol" value="Muski" 
+            {% if takmicar[4] == "Muski" %}
+                checked 
+            {% endif %}
+            c> M
+            <input type="radio" name="pol" value="Zenski"
+            {% if takmicar[4] == "Zenski" %}
+                checked 
+            {% endif %}
+            
+            > Z
+        </p>
+        <p>
+            <input type="submit" value="Registruj se ">
+        </p>
+    </form>
+</body>
+</html>

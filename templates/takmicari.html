@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    {% if "email" in session %}
+    <a href="/logout">Logout</a>
+    <a href="/takmicar/{{session['email']}}">Moj profil</a>
+   
+    <form action="/pretrazi_po_godini" method="POST">
+        <p>
+            <label for="godina_rodjenja">Godina rodjenja</label>
+            <input type="text" name="godina_rodjenja">
+        </p>
+
+        <input type="submit" value="Pretrazi po godini rodjenja">
+        
+    </form>
+    <form action="/pretrazi_po_ime_prezime" method="POST">
+        <p>
+            <label for="ime_prezime">ime_prezime</label>
+            <input type="text" name="ime_prezime">
+        </p>
+
+        <input type="submit" value="Pretrazi po imenu">
+        
+    </form>
+    {% endif %}
+    
+    <table border="1" style="border-collapse: collapse;"> 
+        <tr>
+            <th>ID</th>
+            <th>Email</th>
+            <th>Ime i prezime</th>
+            <th>Godina rodjenja</th>
+            <th>Pol</th>
+            <th>Sifra</th>
+            <th colspan="2">Opcije</th>
+        </tr>
+
+        {% for takmicar in takmicari %}
+        <tr>
+            <th>{{takmicar[0]}}</th>
+            <th>
+                <a href="/takmicar/{{takmicar[1]}}">
+
+                
+                        {{takmicar[1]}}
+
+                </a>
+            </th>
+            <th>{{takmicar[2]}}</th>
+            <th>{{takmicar[3]}}</th>
+            <th>{{takmicar[4]}}</th>
+            <th>{{takmicar[5]}}</th>
+            <th>
+                <form action="/delete/{{takmicar[1]}}" method="POST">
+                    <input type="submit" value="Obrisi">
+                </form>
+            </th>
+
+            <th>
+                <!-- takmicar[1] je email takmicara -->
+                <a href="/update/{{takmicar[1]}}">UPDATE</a>
+            </th>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>
